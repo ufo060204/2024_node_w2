@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: [true, "貼文姓名 未填寫"],
+    },
+    tags: {
+      type: String,
+      required: [true, "貼文標籤 未填寫"],
+    },
+    type: {
+      type: String,
+      required: [true, "貼文類型 未填寫"],
+    },
     content: {
       type: String,
-      required: [true, "Content 未填寫"], // 必填，並顯示錯誤訊息
+      required: [true, "貼文內容 未填寫"], // 必填，並顯示錯誤訊息
     },
     image: {
       type: String,
@@ -13,10 +25,6 @@ const postSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(), // 預設值，使用 Date.now() 來取得目前時間
       select: false, // 不顯示，例如密碼
-    },
-    name: {
-      type: String,
-      required: [true, "貼文姓名未填寫"],
     },
     likes: {
       type: Number,
