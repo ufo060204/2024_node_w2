@@ -49,8 +49,10 @@ const posts = {
   async updatePost({ body, req, res }) {
     try {
       const id = req.url.split("/").pop();
+      // console.log(id);
       const data = JSON.parse(body);
-      if (data.content !== undefined) {
+      console.log(data);
+      if (data.content) {
         const updatePost = await Posts.findByIdAndUpdate(id, {
           name: data.name,
           content: data.content.trim(), // 去除字串前後空白

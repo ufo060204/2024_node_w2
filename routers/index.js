@@ -19,7 +19,7 @@ const routers = async (req, res) => {
   } else if (url.startsWith("/posts/") && method == "DELETE") {
     postsControllers.deletePost({ req, res });
   } else if (url.startsWith("/posts/") && method == "PATCH") {
-    postsControllers.updatePost({ body, req, res });
+    req.on("end", async () => await postsControllers.updatePost({ body, req, res }));
   } else if (method == "OPTIONS") {
     httpControllers.cors(req, res);
   } else {
